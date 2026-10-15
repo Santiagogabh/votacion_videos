@@ -1,0 +1,7 @@
+{
+  "name": "concurso-videos",
+  "version": "1.0.0",
+  "private": true,
+  "engines": { "node": "20.x" },
+  "dependencies": { "@upstash/redis": "^1.34.0" }
+}

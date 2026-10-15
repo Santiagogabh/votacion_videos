@@ -1,0 +1,44 @@
+[
+  {
+    "id": "v1",
+    "title": "Video 1 (ejemplo)",
+    "author": "Participante 1",
+    "embed": "<iframe src='https://www.youtube.com/embed/QNZ3Lz1H2pE' allowfullscreen></iframe>"
+  },
+  {
+    "id": "v2",
+    "title": "Video 2 (ejemplo)",
+    "author": "Participante 2",
+    "embed": "<iframe src='https://www.youtube.com/embed/86n0U8L_WvE' allowfullscreen></iframe>"
+  },
+  {
+    "id": "v3",
+    "title": "Video 3 (ejemplo)",
+    "author": "Participante 3",
+    "embed": "<iframe src='https://www.youtube.com/embed/rQOqxxTHDl8' allowfullscreen></iframe>"
+  },
+  {
+    "id": "v4",
+    "title": "Video 4 (ejemplo)",
+    "author": "Participante 4",
+    "embed": "<iframe src='https://www.youtube.com/embed/TnKZJN9EX6A' allowfullscreen></iframe>"
+  },
+  {
+    "id": "v5",
+    "title": "Video 5 (ejemplo)",
+    "author": "Participante 5",
+    "embed": "<iframe src='https://www.youtube.com/embed/Ao10bvWCpF4' allowfullscreen></iframe>"
+  },
+  {
+    "id": "v6",
+    "title": "Video 6 (ejemplo)",
+    "author": "Participante 6",
+    "embed": "<iframe src='https://www.youtube.com/embed/ife-wakLryc' allowfullscreen></iframe>"
+  },
+  {
+    "id": "v7",
+    "title": "Video 7 (ejemplo)",
+    "author": "Participante 7",
+    "embed": ""
+  }
+]

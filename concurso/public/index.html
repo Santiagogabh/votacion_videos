@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vota por tu video favorito</title>
+<meta name="description" content="Mira los videos del concurso y vota por tus favoritos.">
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--text:#14161f;--muted:#6b7080;--line:#e6e8f0;--accent:#6c5ce7;--accent2:#ff6b9a;--gold:#f5b301;--shadow:0 6px 24px rgba(20,22,40,.07);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1017;--card:#171a24;--text:#eef0f7;--muted:#9096aa;--line:#262a38;--shadow:0 6px 24px rgba(0,0,0,.35)}}
+:root[data-theme="dark"]{--bg:#0e1017;--card:#171a24;--text:#eef0f7;--muted:#9096aa;--line:#262a38;--shadow:0 6px 24px rgba(0,0,0,.35)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+.wrap{max-width:1120px;margin:0 auto;padding:48px 20px 72px}
+header{text-align:center;margin-bottom:40px;animation:up .6s both}
+.badge{display:inline-block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent);padding:6px 12px;border-radius:99px;font-weight:600}
+h1{font-size:clamp(30px,5.5vw,52px);margin:16px 0 10px;letter-spacing:-.03em;line-height:1.1}
+header p{color:var(--muted);margin:0 auto;max-width:520px}
+#status{margin-top:14px;font-size:13px;color:var(--muted);min-height:20px}
+.grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s;animation:up .6s both}
+.card:hover{transform:translateY(-4px)}
+.video{position:relative;aspect-ratio:16/9;background:#000}
+.video iframe,.ph{position:absolute;inset:0;width:100%;height:100%;border:0}
+.ph{display:flex;align-items:center;justify-content:center;color:var(--muted);background:var(--line);font-size:14px;text-align:center;padding:16px}
+.body{padding:16px 18px 18px}
+.num{font-size:12px;color:var(--muted);font-weight:600}
+.body h3{margin:2px 0 2px;font-size:18px;letter-spacing:-.01em}
+.author{margin:0 0 14px;font-size:14px;color:var(--muted)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.count{font-size:14px;color:var(--muted)}.count b{font-size:24px;color:var(--text);margin-right:4px;display:inline-block}
+.count b.bump{animation:bump .4s}
+.like{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--line);background:transparent;color:var(--text);font:600 14px inherit;padding:10px 18px;border-radius:99px;cursor:pointer;transition:all .2s}
+.like:hover:not(:disabled){border-color:var(--accent2);color:var(--accent2);transform:scale(1.04)}
+.like svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2}
+.like.on{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:transparent;color:#fff;cursor:default}
+.like.on svg{fill:#fff}
+.like:disabled:not(.on){opacity:.5;cursor:not-allowed}
+.yt{display:inline-block;margin:-6px 0 12px;font-size:13px;color:var(--accent);text-decoration:none;font-weight:600}
+.yt:hover{text-decoration:underline}
+.like.on{cursor:pointer}
+.like.on:hover{opacity:.85}
+section.results{margin-top:72px}
+h2{font-size:clamp(24px,4vw,34px);letter-spacing:-.02em;text-align:center;margin:0 0 26px}
+.winner{background:linear-gradient(135deg,color-mix(in srgb,var(--gold) 20%,var(--card)),var(--card));border:1.5px solid var(--gold);border-radius:20px;padding:22px;text-align:center;margin-bottom:22px;box-shadow:var(--shadow);animation:up .5s both}
+.winner .crown{font-size:34px}.winner small{display:block;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:600}
+.winner h3{margin:4px 0;font-size:24px}
+.rank{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.rank li{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;display:grid;grid-template-columns:32px 1fr auto;gap:4px 12px;align-items:center;transition:transform .4s}
+.pos{font-weight:700;color:var(--muted);text-align:center}
+.rank li:first-child .pos{color:var(--gold)}
+.name{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v{font-weight:700;font-variant-numeric:tabular-nums}
+.bar{grid-column:2/4;height:6px;border-radius:9px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:9px;transition:width .6s ease}
+footer{text-align:center;color:var(--muted);font-size:12px;margin-top:48px}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes bump{50%{transform:scale(1.35)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="badge">Concurso de videos</span>
+    <h1>Vota por tu video favorito</h1>
+    <p>Mira los videos y dale like a los que más te gusten. Un voto por video; puedes quitarlo cuando quieras.</p>
+    <div id="status">Conectando…</div>
+  </header>
+  <main id="grid" class="grid"></main>
+  <section class="results" id="resultados">
+    <h2>Resultados</h2>
+    <div id="winner"></div>
+    <ol class="rank" id="rank"></ol>
+  </section>
+  <footer>Los resultados se actualizan automáticamente.</footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
